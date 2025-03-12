@@ -1,5 +1,6 @@
 package base;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +15,14 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    public WebElement a_ByText(String text) {
+        return driver.findElement(By.xpath(String.format("//a[normalize-space(text())='%s']", text)));
+    }
+
+    protected WebElement button_ByText(String text) {
+        return driver.findElement(By.xpath(String.format("//button[text()='%s']", text)));
     }
 
     protected void waitForElementToBeVisible(WebElement element) {
