@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class BasePage {
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    protected WebDriverWait wait;git
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -34,11 +34,11 @@ public class BasePage {
         element.click();
     }
 
-    protected void enterText(WebElement element, String text) {
-        waitForElementToBeVisible(element);
-        element.clear();
-        element.sendKeys(text);
-    }
+//    protected void enterText(WebElement element, String text) {
+//        waitForElementToBeVisible(element);
+//        element.clear();
+//        element.sendKeys(text);
+//    }
 
     protected String getElementText(WebElement element) {
         waitForElementToBeVisible(element);
