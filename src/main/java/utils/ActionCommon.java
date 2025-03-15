@@ -1,22 +1,33 @@
 package utils;
 
 import base.BasePage;
+import base.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+public class ActionCommon {
 
-public class ActionCommon extends BasePage{
+    private WebDriver driver;
+    private WebDriverWait wait;
 
-    public ActionCommon(WebDriver driver) {
-        super(driver);
+    public ActionCommon() {
+        this.driver = DriverManager.getInstance("chrome").getDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-    private static WebDriver driver;
+
+
+    public void click(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
 
     public static void clickElement(WebElement element){
         element.isDisplayed();
         element.click();
     }
-    public static void clickElement(String xpath){
+    public void clickElement(String xpath){
         WebElement element = driver.findElement(By.xpath(xpath));
         clickElement(element);
     }
@@ -26,12 +37,12 @@ public class ActionCommon extends BasePage{
         element.sendKeys(text);
     } 
 
-    public static void enterText(String xpath, String text) {
+    public void enterText(String xpath, String text) {
         WebElement element = driver.findElement(By.xpath(xpath));
         enterText(element, text);
     }
 
-    public static String getText(String xpath){
+    public  String getText(String xpath){
         WebElement element = driver.findElement(By.xpath(xpath));
         return element.getText();
     }
@@ -40,5 +51,8 @@ public class ActionCommon extends BasePage{
         return element.getText();
     }
 
+    public void navigateTo(String url){
+        driver.navigate().to(url);
+    }
 
 }

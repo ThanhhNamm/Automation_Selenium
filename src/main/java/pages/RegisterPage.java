@@ -1,27 +1,19 @@
 package pages;
 
 import base.BasePage;
+import data.RegisterData;
 import elements.RegisterElements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import utils.ActionCommon;
 
 public class RegisterPage extends BasePage {
-
-    public RegisterPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
+    public void inputInfoRegister(String name, String email){
+        actions.enterText(RegisterElements.EMAIL_INPUT, email);
+        actions.enterText(RegisterElements.NAME_INPUT, name);
     }
 
-    public static void inputInfoRegister(String name, String email){
-        ActionCommon.enterText(RegisterElements.NAME_INPUT, name);
-        ActionCommon.enterText(RegisterElements.EMAIL_INPUT, email);
-        ActionCommon.getText()
+    public void submitInfoRegister(){
+        actions.clickElement(RegisterElements.SINGUP_BUTTON);
     }
-
-    public static void clickButtonRegister(){
-        ActionCommon.clickElement(RegisterElements.SINGUP_BUTTON);
-    }
-
-
 }

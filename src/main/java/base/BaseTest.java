@@ -8,16 +8,16 @@ import org.testng.annotations.BeforeTest;
 import utils.WebDriverManager;
 
 public class BaseTest {
-    protected WebDriver driver;
-    BasePage basePage = new BasePage(driver);
+        protected static WebDriver driver;
 
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.getDriver();
-    }
+        @BeforeTest
+        public static void setUp() {
+            driver = DriverManager.getInstance("chrome").getDriver();
+//            driver.get("https://automationexercise.com/");
+        }
 
-    protected void verifyElementToBeVisible(WebElement element) {
-        basePage.waitForElementToBeVisible(element);
-        Assert.assertTrue(element.isDisplayed(),"Element NOT visible!");
-    }
+        @BeforeTest
+        public static void tearDown() {
+            DriverManager.getInstance("chrome").quitDriver();
+        }
 }

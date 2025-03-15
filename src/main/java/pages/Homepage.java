@@ -1,16 +1,18 @@
 package pages;
 
 import base.BasePage;
+import elements.HomeElements;
+import elements.RegisterElements;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Homepage extends BasePage {
-    public Homepage(WebDriver driver) {
-        super(driver);
+    public void navigateHomePage(){
+        actions.navigateTo("https://automationexercise.com/");
     }
-
-    public void navigateToPage(String page) {
-        click(a_ByText(page));
+    public void navigateToLoginPage(){
+        actions.clickElement(HomeElements.LOGIN_ITEMS);
     }
 
 }
